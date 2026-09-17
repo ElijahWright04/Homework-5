@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Native Plant App - Search</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Native Plant App</h1>
+        <p>Find Species By Requirements</p>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="search.html">Search</a></li>
+            <li><a href="details.html">Plant Details</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="admin.html">Admin</a></li>
+        </ul>
+    </nav>
+    <main>
+        <section>
+            <h2>Plant Search & Filter</h2>
+            <div class="search-bar">
+                <label for="keyword"><b>Search Keyword:</b></label>
+                <input type="text" id="keyword" placeholder="e.g. Coneflower, Butterfly...">
+                
+                <label for="sun"><b>Sunlight Requirement:</b></label>
+                <select id="sun">
+                    <option value="all">All Sunlight Types</option>
+                    <option value="full">Full Sun</option>
+                    <option value="part">Part Shade</option>
+                </select>
+                <button type="button">Filter Results</button>
+            </div>
+
+            <div class="plant-grid">
+                <article class="plant-card">
+                    <img src="images/PurpleConeflower.jpg" alt="Purple Coneflower">
+                    <h3>Purple Coneflower</h3>
+                    <p><b>Sun:</b> Full Sun | <b>Soil:</b> Well-Drained</p>
+                    <a href="details.html" style="display:inline-block; margin-top:0.5rem; color:#2d5a27; font-weight:bold;">View Details &rarr;</a>
+                </article>
+                <article class="plant-card">
+                    <img src="images/butterflyweed.jpeg" alt="Butterfly Weed">
+                    <h3>Butterfly Weed</h3>
+                    <p><b>Sun:</b> Full Sun | <b>Soil:</b> Dry</p>
+                    <a href="details.html" style="display:inline-block; margin-top:0.5rem; color:#2d5a27; font-weight:bold;">View Details &rarr;</a>
+                </article>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2026 Native Plant Initiative App</p>
+    </footer>
+</body>
+</html>
