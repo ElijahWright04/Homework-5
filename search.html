@@ -7,10 +7,12 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
     <header>
         <h1>Native Plant App</h1>
-        <p>Find Species By Requirements</p>
+        <p>Your Mobile Guide to Regional Flora</p>
     </header>
+
     <nav>
         <ul>
             <li><a href="index.html">Home</a></li>
@@ -20,40 +22,43 @@
             <li><a href="admin.html">Admin</a></li>
         </ul>
     </nav>
+
     <main>
         <section>
-            <h2>Plant Search & Filter</h2>
-            <div class="search-bar">
-                <label for="keyword"><b>Search Keyword:</b></label>
-                <input type="text" id="keyword" placeholder="e.g. Coneflower, Butterfly...">
-                
-                <label for="sun"><b>Sunlight Requirement:</b></label>
-                <select id="sun">
-                    <option value="all">All Sunlight Types</option>
-                    <option value="full">Full Sun</option>
-                    <option value="part">Part Shade</option>
-                </select>
-                <button type="button">Filter Results</button>
+            <h2>Search Native Plants</h2>
+            <p>Filter our regional plant database by name, keyword, or sunlight requirements.</p>
+
+            <div style="margin-bottom: 2rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+                <div>
+                    <label for="keyword" style="display: block; margin-bottom: 0.5rem; font-weight: bold;">Search Keyword:</label>
+                    <input type="text" id="keyword" placeholder="Enter plant name..." style="padding: 0.5rem; border: 1px solid #ccc; border-radius: 4px;">
+                </div>
+                <div>
+                    <label for="sun" style="display: block; margin-bottom: 0.5rem; font-weight: bold;">Sunlight:</label>
+                    <select id="sun" style="padding: 0.5rem; border: 1px solid #ccc; border-radius: 4px;">
+                        <option value="all">All Sunlight Types</option>
+                        <option value="Full Sun">Full Sun</option>
+                        <option value="Part Shade">Part Shade</option>
+                        <option value="Shade">Shade</option>
+                    </select>
+                </div>
+                <div style="align-self: flex-end;">
+                    <button id="filter-btn" style="padding: 0.5rem 1rem; background-color: #2d5a27; color: white; border: none; border-radius: 4px; cursor: pointer;">Filter</button>
+                </div>
             </div>
 
+            <!-- Dynamic Plant Cards Grid -->
             <div class="plant-grid">
-                <article class="plant-card">
-                    <img src="images/PurpleConeflower.jpg" alt="Purple Coneflower">
-                    <h3>Purple Coneflower</h3>
-                    <p><b>Sun:</b> Full Sun | <b>Soil:</b> Well-Drained</p>
-                    <a href="details.html" style="display:inline-block; margin-top:0.5rem; color:#2d5a27; font-weight:bold;">View Details &rarr;</a>
-                </article>
-                <article class="plant-card">
-                    <img src="images/butterflyweed.jpeg" alt="Butterfly Weed">
-                    <h3>Butterfly Weed</h3>
-                    <p><b>Sun:</b> Full Sun | <b>Soil:</b> Dry</p>
-                    <a href="details.html" style="display:inline-block; margin-top:0.5rem; color:#2d5a27; font-weight:bold;">View Details &rarr;</a>
-                </article>
+                <!-- JavaScript will dynamically insert plant cards here -->
             </div>
         </section>
     </main>
+
     <footer>
         <p>&copy; 2026 Native Plant Initiative App</p>
     </footer>
+
+    <!-- Link your interactive JavaScript -->
+    <script src="script.js"></script>
 </body>
 </html>
