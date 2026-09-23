@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Native Plant App - Search</title>
+    <title>Native Plant App - Search & Filter</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -25,12 +25,12 @@
 
     <main>
         <section>
-            <h2>Search Native Plants</h2>
-            <p>Filter our regional plant database by name, keyword, or sunlight requirements.</p>
+            <h2>Search & Filter Native Plants</h2>
+            <p>Search by name or filter our database by sunlight and bloom season.</p>
 
             <div style="margin-bottom: 2rem; display: flex; gap: 1rem; flex-wrap: wrap;">
                 <div>
-                    <label for="keyword" style="display: block; margin-bottom: 0.5rem; font-weight: bold;">Search Keyword:</label>
+                    <label for="keyword" style="display: block; margin-bottom: 0.5rem; font-weight: bold;">Plant Name:</label>
                     <input type="text" id="keyword" placeholder="Enter plant name..." style="padding: 0.5rem; border: 1px solid #ccc; border-radius: 4px;">
                 </div>
                 <div>
@@ -42,8 +42,17 @@
                         <option value="Shade">Shade</option>
                     </select>
                 </div>
+                <div>
+                    <label for="bloom" style="display: block; margin-bottom: 0.5rem; font-weight: bold;">Bloom Season:</label>
+                    <select id="bloom" style="padding: 0.5rem; border: 1px solid #ccc; border-radius: 4px;">
+                        <option value="all">All Seasons</option>
+                        <option value="Spring">Spring</option>
+                        <option value="Summer">Summer</option>
+                        <option value="Fall">Fall</option>
+                    </select>
+                </div>
                 <div style="align-self: flex-end;">
-                    <button id="filter-btn" style="padding: 0.5rem 1rem; background-color: #2d5a27; color: white; border: none; border-radius: 4px; cursor: pointer;">Filter</button>
+                    <button id="filter-btn" style="padding: 0.5rem 1rem; background-color: #2d5a27; color: white; border: none; border-radius: 4px; cursor: pointer;">Apply Filters</button>
                 </div>
             </div>
 
@@ -58,7 +67,6 @@
         <p>&copy; 2026 Native Plant Initiative App</p>
     </footer>
 
-    <!-- Link your interactive JavaScript -->
     <script src="script.js"></script>
 </body>
 </html>
