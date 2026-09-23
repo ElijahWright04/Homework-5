@@ -1,4 +1,3 @@
-// 1. Plant Data Array
 const nativePlants = [
     {
         name: "Purple Coneflower",
@@ -92,19 +91,16 @@ const nativePlants = [
     }
 ];
 
-// 2. DOM Elements Selection
 document.addEventListener("DOMContentLoaded", () => {
     const searchInput = document.getElementById("keyword");
     const sunSelect = document.getElementById("sun");
+    const bloomSelect = document.getElementById("bloom");
     const filterBtn = document.getElementById("filter-btn");
     const gridContainer = document.querySelector(".plant-grid");
     const tableBody = document.querySelector("tbody");
 
-    // Function to render plants dynamically into cards and tables
     function displayPlants(plantsToDisplay) {
         if (!gridContainer) return;
-        
-        // Clear existing content
         gridContainer.innerHTML = "";
         if (tableBody) tableBody.innerHTML = "";
 
@@ -114,7 +110,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         plantsToDisplay.forEach((plant, index) => {
-            // Create Card HTML
             const card = document.createElement("article");
             card.classList.add("plant-card");
             card.innerHTML = `
@@ -128,7 +123,6 @@ document.addEventListener("DOMContentLoaded", () => {
             `;
             gridContainer.appendChild(card);
 
-            // Populate Table if present
             if (tableBody) {
                 const row = document.createElement("tr");
                 row.innerHTML = `
@@ -142,35 +136,28 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // 3. Search and Filter Logic
     function filterPlants() {
         const searchTerm = searchInput ? searchInput.value.toLowerCase().trim() : "";
         const selectedSun = sunSelect ? sunSelect.value : "all";
+        const selectedBloom = bloomSelect ? bloomSelect.value : "all";
 
         const filtered = nativePlants.filter(plant => {
             const matchesSearch = plant.name.toLowerCase().includes(searchTerm) || 
-                                  plant.scientificName.toLowerCase().includes(searchTerm) ||
-                                  plant.wildlifeBenefits.toLowerCase().includes(searchTerm);
+                                  plant.scientificName.toLowerCase().includes(searchTerm);
             
             const matchesSun = selectedSun === "all" || plant.sunlight.toLowerCase().includes(selectedSun.toLowerCase());
+            const matchesBloom = selectedBloom === "all" || plant.bloomSeason.toLowerCase().includes(selectedBloom.toLowerCase());
 
-            return matchesSearch && matchesSun;
+            return matchesSearch && matchesSun && matchesBloom;
         });
 
         displayPlants(filtered);
     }
 
-    // Attach Event Listeners if elements exist on the page
-    if (filterBtn) {
-        filterBtn.addEventListener("click", filterPlants);
-    }
-    if (searchInput) {
-        searchInput.addEventListener("input", filterPlants);
-    }
-    if (sunSelect) {
-        sunSelect.addEventListener("change", filterPlants);
-    }
+    if (filterBtn) filterBtn.addEventListener("click", filterPlants);
+    if (searchInput) searchInput.addEventListener("input", filterPlants);
+    if (sunSelect) sunSelect.addEventListener("change", filterPlants);
+    if (bloomSelect) bloomSelect.addEventListener("change", filterPlants);
 
-    // Initial render call on page load
     displayPlants(nativePlants);
 });
