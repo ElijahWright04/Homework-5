@@ -1,3 +1,4 @@
+// 1. Plant Data Array (15 plants with all required properties)
 const nativePlants = [
     {
         name: "Purple Coneflower",
@@ -88,27 +89,83 @@ const nativePlants = [
         height: "1-2 feet",
         bloomSeason: "Spring",
         wildlifeBenefits: "Provides critical early-season nectar for emerging long-tongued bees."
+    },
+    {
+        name: "White Turtlehead",
+        scientificName: "Chelone glabra",
+        sunlight: "Part Shade",
+        soil: "Wet to Moist",
+        height: "2-3 feet",
+        bloomSeason: "Late Summer",
+        wildlifeBenefits: "Sole host plant for the Baltimore checkerspot butterfly."
+    },
+    {
+        name: "Great Blue Lobelia",
+        scientificName: "Lobelia siphilitica",
+        sunlight: "Full Sun to Part Shade",
+        soil: "Moist",
+        height: "2-3 feet",
+        bloomSeason: "Summer",
+        wildlifeBenefits: "Visited frequently by bumblebees and long-tongued pollinators."
+    },
+    {
+        name: "Foxglove Beardtongue",
+        scientificName: "Penstemon digitalis",
+        sunlight: "Full Sun to Part Shade",
+        soil: "Medium to Well-Drained",
+        height: "2-3 feet",
+        bloomSeason: "Spring",
+        wildlifeBenefits: "Provides heavy nectar for native bees and specialist pollinators."
+    },
+    {
+        name: "Goldenrod",
+        scientificName: "Solidago altissima",
+        sunlight: "Full Sun",
+        soil: "Adaptable",
+        height: "3-6 feet",
+        bloomSeason: "Fall",
+        wildlifeBenefits: "Essential fall food source and pollen provider for over 100 insect species."
+    },
+    {
+        name: "Wild Columbine",
+        scientificName: "Aquilegia canadensis",
+        sunlight: "Part Shade to Shade",
+        soil: "Rocky, Well-Drained",
+        height: "1-2 feet",
+        bloomSeason: "Spring",
+        wildlifeBenefits: "Unique flower shape is perfectly adapted for hummingbird pollination."
     }
 ];
 
+// 2. DOM Manipulation & Event Handling
 document.addEventListener("DOMContentLoaded", () => {
     const searchInput = document.getElementById("keyword");
     const sunSelect = document.getElementById("sun");
     const bloomSelect = document.getElementById("bloom");
     const filterBtn = document.getElementById("filter-btn");
+    const clearBtn = document.getElementById("clear-btn");
     const gridContainer = document.querySelector(".plant-grid");
     const tableBody = document.querySelector("tbody");
 
+    // Function to display plants or "no results" message using loops and DOM creation
     function displayPlants(plantsToDisplay) {
         if (!gridContainer) return;
+        
         gridContainer.innerHTML = "";
         if (tableBody) tableBody.innerHTML = "";
 
+        // Conditional statement for no results found
         if (plantsToDisplay.length === 0) {
-            gridContainer.innerHTML = "<p>No native plants found matching your criteria.</p>";
+            gridContainer.innerHTML = `
+                <div style="grid-column: 1 / -1; text-align: center; padding: 3rem; background: #fff; border-radius: 8px; border: 1px dashed #ccc;">
+                    <h3 style="color: #2d5a27; margin-bottom: 0.5rem;">No Plants Found</h3>
+                    <p style="color: #666;">No native plants match your search or filter criteria. Try adjusting your selections.</p>
+                </div>
+            `;
             return;
         }
 
+        // Loop through filtered results
         plantsToDisplay.forEach((plant, index) => {
             const card = document.createElement("article");
             card.classList.add("plant-card");
@@ -136,6 +193,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    // Filtering logic using conditional checks and array filter method
     function filterPlants() {
         const searchTerm = searchInput ? searchInput.value.toLowerCase().trim() : "";
         const selectedSun = sunSelect ? sunSelect.value : "all";
@@ -143,7 +201,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const filtered = nativePlants.filter(plant => {
             const matchesSearch = plant.name.toLowerCase().includes(searchTerm) || 
-                                  plant.scientificName.toLowerCase().includes(searchTerm);
+                                  plant.scientificName.toLowerCase().includes(searchTerm) ||
+                                  plant.wildlifeBenefits.toLowerCase().includes(searchTerm);
             
             const matchesSun = selectedSun === "all" || plant.sunlight.toLowerCase().includes(selectedSun.toLowerCase());
             const matchesBloom = selectedBloom === "all" || plant.bloomSeason.toLowerCase().includes(selectedBloom.toLowerCase());
@@ -154,10 +213,21 @@ document.addEventListener("DOMContentLoaded", () => {
         displayPlants(filtered);
     }
 
+    // Function to clear search results and reset inputs
+    function clearSearch() {
+        if (searchInput) searchInput.value = "";
+        if (sunSelect) sunSelect.value = "all";
+        if (bloomSelect) bloomSelect.value = "all";
+        displayPlants(nativePlants);
+    }
+
+    // Event handlers
     if (filterBtn) filterBtn.addEventListener("click", filterPlants);
+    if (clearBtn) clearBtn.addEventListener("click", clearSearch);
     if (searchInput) searchInput.addEventListener("input", filterPlants);
     if (sunSelect) sunSelect.addEventListener("change", filterPlants);
     if (bloomSelect) bloomSelect.addEventListener("change", filterPlants);
 
+    // Initial render
     displayPlants(nativePlants);
 });
