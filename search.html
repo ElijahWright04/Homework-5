@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Native Plant App - Search & Filter</title>
+    <title>Native Plant App - Search</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -26,11 +26,11 @@
     <main>
         <section>
             <h2>Search & Filter Native Plants</h2>
-            <p>Search by name or filter our database by sunlight and bloom season.</p>
+            <p>Explore our database of 15 regional species by name, sunlight, or bloom season.</p>
 
-            <div style="margin-bottom: 2rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+            <div style="margin-bottom: 2rem; display: flex; gap: 1rem; flex-wrap: wrap; align-items: flex-end;">
                 <div>
-                    <label for="keyword" style="display: block; margin-bottom: 0.5rem; font-weight: bold;">Plant Name:</label>
+                    <label for="keyword" style="display: block; margin-bottom: 0.5rem; font-weight: bold;">Search Keyword:</label>
                     <input type="text" id="keyword" placeholder="Enter plant name..." style="padding: 0.5rem; border: 1px solid #ccc; border-radius: 4px;">
                 </div>
                 <div>
@@ -51,14 +51,15 @@
                         <option value="Fall">Fall</option>
                     </select>
                 </div>
-                <div style="align-self: flex-end;">
-                    <button id="filter-btn" style="padding: 0.5rem 1rem; background-color: #2d5a27; color: white; border: none; border-radius: 4px; cursor: pointer;">Apply Filters</button>
+                <div style="display: flex; gap: 0.5rem;">
+                    <button id="filter-btn" style="padding: 0.5rem 1rem; background-color: #2d5a27; color: white; border: none; border-radius: 4px; cursor: pointer;">Filter</button>
+                    <button id="clear-btn" style="padding: 0.5rem 1rem; background-color: #6c757d; color: white; border: none; border-radius: 4px; cursor: pointer;">Clear</button>
                 </div>
             </div>
 
             <!-- Dynamic Plant Cards Grid -->
             <div class="plant-grid">
-                <!-- JavaScript will dynamically insert plant cards here -->
+                <!-- JavaScript will dynamically insert plant cards or no-results message here -->
             </div>
         </section>
     </main>
